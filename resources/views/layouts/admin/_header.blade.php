@@ -10,16 +10,19 @@
             </button>
             <a class="navbar-brand" href="#">小杰</a>
         </div>
-
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                @auth('admin')
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="{{route('admin.index')}}">平台用户管理</a></li>
+                    <li><a href="{{route('shop.index')}}">商户信息管理</a></li>
+                    <li><a href="{{route('admin.userIndex')}}">商户账号管理</a></li>
                     <li><a href="{{route('about')}}">关于我们</a></li>
                     <li><a href="{{route('help')}}">帮助</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">别点,什么都没有<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
@@ -33,13 +36,13 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
                             <li><a href="#">Something else here</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/">注销</a></li>
+                            <li><a href="{{route('admin.logout')}}">注销</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -49,13 +52,13 @@
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
+                @endauth
 
-
-
+                @guest('admin')
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/">登录</a></li>
+                        <li><a href="{{route('admin.login')}}">登录</a></li>
                     </ul>
-
+                @endguest
 
 
 

@@ -1,4 +1,4 @@
-@extends('layouts.shop.default')
+@extends('layouts.admin.default')
 @section("title","店铺注册列表")
 @section('content')
 
@@ -33,48 +33,31 @@
             是否品牌:<label>
                 <input type="checkbox" value="1" name="brand">是
             </label>
-            <label>
-                <input type="checkbox" value="0" name="brand">否
-            </label>
+
         </div>
         <div class="checkbox">
             是否准时送达:<label>
                 <input type="checkbox" value="1" name="on_time">是
-            </label>
-            <label>
-                <input type="checkbox" value="0" name="on_time">否
             </label>
         </div>
         <div class="checkbox">
             是否蜂鸟配送:<label>
                 <input type="checkbox" value="1" name="fengniao">是
             </label>
-            <label>
-                <input type="checkbox" value="0" name="fengniao">否
-            </label>
         </div>
         <div class="checkbox">
             是否保:<label>
                 <input type="checkbox" value="1" name="bao">是
-            </label>
-            <label>
-                <input type="checkbox" value="0" name="bao">否
             </label>
         </div>
         <div class="checkbox">
             是否票:<label>
                 <input type="checkbox" value="1" name="piao">是
             </label>
-            <label>
-                <input type="checkbox" value="0" name="piao">否
-            </label>
         </div>
         <div class="checkbox">
             是否准:<label>
                 <input type="checkbox" value="1" name="zhun">是
-            </label>
-            <label>
-                <input type="checkbox" value="0" name="zhun">否
             </label>
         </div>
         <div class="form-group">

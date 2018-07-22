@@ -1,4 +1,4 @@
-@extends('layouts.shop.default')
+@extends('layouts.admin.default')
 @section("title","店铺详情列表")
 @section('content')
     <a href="{{route("shop.reg")}}" class="btn btn-info">添加</a>
@@ -23,18 +23,12 @@
                 <td>{{$shop->rating}}</td>
                 <td>{{$shop->start_send}}</td>
                 <td>{{$shop->send_cost}}</td>
-                <td>
-                    @if($shop->status===1)
-                        <a href="#" class="btn btn-success">正常</a>
-                    @elseif($shop->status===-1)
-                        <a href="#" class="btn btn-danger">禁用</a>
-                    @elseif($shop->status===0)
-                        <a href="#" class="btn btn-info">待审核</a>
-                    @endif
-                </td>
+                <td>{{\App\Models\Shop::$statusArray[$shop->status]}}</td>
                 <td>
                     <a href="{{route("shop.edit",$shop->id)}}" class="btn btn-warning">编辑</a>
-                    <a href="{{route("shop.del",$shop->id)}}" class="btn btn-danger">删除</a>
+                    @if($shop->status===0)
+                        <a href="{{route('shop.audit',$shop->id)}}" class="btn btn-info">审核</a>
+                    @endif
                 </td>
             </tr>
         @endforeach
