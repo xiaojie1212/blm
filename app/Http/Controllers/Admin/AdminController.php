@@ -68,7 +68,7 @@ class AdminController extends BaseController
             return redirect()->route("admin.index");
         }
         //通过id找到对象
-        $admin=Admin::find($id);
+        $admin=Admin::findOrFail($id);
         //删除
         $admin->delete();
             //跳转

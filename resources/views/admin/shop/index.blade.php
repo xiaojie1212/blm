@@ -26,6 +26,7 @@
                 <td>{{\App\Models\Shop::$statusArray[$shop->status]}}</td>
                 <td>
                     <a href="{{route("shop.edit",$shop->id)}}" class="btn btn-warning">编辑</a>
+                    <a href="{{route("shop.del",$shop->id)}}" onclick="return confirm('是否连着账号一起删除？')" class="btn btn-danger">删除</a>
                     @if($shop->status===0)
                         <a href="{{route('shop.audit',$shop->id)}}" class="btn btn-info">审核</a>
                     @endif

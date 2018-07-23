@@ -23,7 +23,7 @@
         <div class="form-group">
             店铺分类:<select name="shop_category_id" >
                 @foreach($cates as $cate)
-                    <option value="{{$cate->id}}"@if($shop->shop_category_id===$cate->id) selected @endif>{{$cate->name}}</option>
+                    <option value="{{$cate->id}}" @if($shop->shop_category_id===$cate->id) selected @endif>{{$cate->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -36,16 +36,16 @@
         <br/>
         <div class="checkbox">
             是否品牌:<label>
-                <input type="checkbox" value="1"{{$shop->brand?"checked":""}} name="brand">是
+                <input type="checkbox" value="1" {{$shop->brand?"checked":""}} name="brand">是
             </label>
             <label>
-                <input type="checkbox" value="0"{{$shop->brand?"":"checked"}} name="brand">否
+                <input type="checkbox" value="0" {{$shop->brand?"":"checked"}} name="brand">否
             </label>
         </div>
         <br/>
         <div class="checkbox">
             是否准时送达:<label>
-                <input type="checkbox" value="1"{{$shop->on_time?"checked":""}} name="on_time">是
+                <input type="checkbox" value="1" {{$shop->on_time?"checked":""}} name="on_time">是
             </label>
             <label>
                 <input type="checkbox" value="0"{{$shop->on_time?"":"checked"}} name="on_time">否

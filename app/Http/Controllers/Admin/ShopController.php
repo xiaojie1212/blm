@@ -117,6 +117,7 @@ class ShopController extends Controller
                 $date['img']="";
                 if ($request->file('img')){
                     //上传图片
+                    File::delete(public_path("/uploads/".$shop->img));
                     $date['img']= $request->file('img')->store("shops","images");
                 }
                 $date['brand'] = $request->post('brand');
@@ -137,6 +138,15 @@ class ShopController extends Controller
         return view("admin.shop.edit",compact("cates","shop","user"));
     }
 
+    public function del(Request $request,$id)
+    {
+        DB::transaction(function () use ($id){
+           $shop= Shop::findOrFail($id)->delete();
+           File::delete(public_path("/uploads/".$shop->img));
+           $user=User::where('shop_id',$id)->delete();
+        });
+        return redirect()->route('shop.index')->with('success','删除成功');
+    }
 
     public function audit($id)
     {

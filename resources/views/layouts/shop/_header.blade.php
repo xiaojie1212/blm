@@ -16,10 +16,12 @@
             @auth
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="{{route('about')}}">关于我们</a></li>
-                    <li><a href="{{route('help')}}">帮助</a></li>
+
+                    <li><a href="{{route('user.index')}}">店铺详情管理</a></li>
+                    <li><a href="{{route('menucate.index')}}">菜品分类管理</a></li>
+                    <li><a href="{{route('menu.index')}}">菜品管理</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">别点 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
@@ -27,7 +29,7 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Separated link</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="#">其他</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -43,12 +45,6 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" method="get" action="">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索" name="name">
-                    </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
-                </form>
             @endauth
 
             @guest

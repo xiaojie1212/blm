@@ -58,4 +58,15 @@ Route::domain('shop.blm.com')->namespace('Shop')->group(function () {
     Route::any('user/del/{id}',"UserController@del")->name("user.del");
     Route::any('user/login',"UserController@login")->name("user.login");
     Route::any('user/logout',"UserController@logout")->name("user.logout");
+
+    //菜品分类
+    Route::any('menucate/index',"MenuCateController@index")->name("menucate.index");
+    Route::any('menucate/add',"MenuCateController@add")->name("menucate.add");
+    Route::any('menucate/edit/{id}',"MenuCateController@edit")->name("menucate.edit");
+    Route::any('menucate/del/{id}',"MenuCateController@del")->name("menucate.del");
+    //菜品分类
+    Route::any('menu/index',"MenuController@index")->name("menu.index");
+    Route::any('menu/add',"MenuController@add")->name("menu.add");
+    Route::any('menu/edit/{id}',"MenuController@edit")->name("menu.edit");
+    Route::any('menu/del/{id}',"MenuController@del")->name("menu.del");
 });

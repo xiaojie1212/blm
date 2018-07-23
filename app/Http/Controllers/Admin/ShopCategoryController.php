@@ -33,7 +33,7 @@ class ShopCategoryController extends Controller
                 //上传图片
                 $data['logo']= $request->file('logo')->store("shop_category","images");
             }
-            //dd($data);
+
             //入库
             ShopCategory::create($data);
             //提示信息
