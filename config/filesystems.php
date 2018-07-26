@@ -66,7 +66,14 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
-
+        'oss' => [
+            'driver' => 'oss',
+            'access_id' => env("ACCESS_ID"),
+            'access_key' => env("ACCESS_KEY"),
+            'bucket' => env("BUCKET"),
+            'endpoint' => env("ENDPOINT"),
+            'debug'         => false
+        ],
     ],
 
 ];

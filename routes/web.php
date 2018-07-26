@@ -36,6 +36,7 @@ Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
     Route::any('shop/edit/{id}',"ShopController@edit")->name("shop.edit");
     Route::any('shop/del/{id}',"ShopController@del")->name("shop.del");
     Route::any('shop/audit/{id}',"ShopController@audit")->name("shop.audit");
+    Route::any('shop/upload',"ShopController@upload")->name("shop.upload");
     //平台账户
     Route::any('admin/index',"AdminController@index")->name("admin.index");
     Route::any('admin/add',"AdminController@add")->name("admin.add");
@@ -46,6 +47,13 @@ Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
     Route::any('admin/userIndex',"AdminController@userIndex")->name("admin.userIndex");
     Route::any('admin/audit/{id}',"AdminController@audit")->name("admin.audit");
     Route::any('admin/reset/{id}',"AdminController@reset")->name("admin.reset");
+    //活动信息
+    Route::any('activity/index',"ActivityController@index")->name("activity.index");
+    Route::any('activity/add',"ActivityController@add")->name("activity.add");
+    Route::any('activity/edit/{id}',"ActivityController@edit")->name("activity.edit");
+    Route::any('activity/del/{id}',"ActivityController@del")->name("activity.del");
+
+
 });
 
 //商家
@@ -58,6 +66,7 @@ Route::domain('shop.blm.com')->namespace('Shop')->group(function () {
     Route::any('user/del/{id}',"UserController@del")->name("user.del");
     Route::any('user/login',"UserController@login")->name("user.login");
     Route::any('user/logout',"UserController@logout")->name("user.logout");
+    Route::any('user/act',"UserController@act")->name("user.act");
 
     //菜品分类
     Route::any('menucate/index',"MenuCateController@index")->name("menucate.index");
@@ -69,4 +78,5 @@ Route::domain('shop.blm.com')->namespace('Shop')->group(function () {
     Route::any('menu/add',"MenuController@add")->name("menu.add");
     Route::any('menu/edit/{id}',"MenuController@edit")->name("menu.edit");
     Route::any('menu/del/{id}',"MenuController@del")->name("menu.del");
+    Route::any('menu/upload',"MenuController@upload")->name("menu.upload");
 });

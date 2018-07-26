@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <input type="text" name="keywords" value="{{request()->input('keywords')}}" class="form-control" placeholder="菜品名称">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default">搜索</button>
                 </form>
             </div>
         </div>
@@ -48,7 +48,7 @@
        @foreach($menus as $menu)
        <tr>
            <td>{{$menu->id}}</td>
-           <td><img src="/uploads/{{$menu->goods_img}}" width="60"></td>
+           <td><img src="{{$menu->goods_img}}" width="60"></td>
            <td>{{$menu->goods_name}}</td>
            <td>{{$menu->menucate->name}}</td>
            <td>{{$menu->goods_price}}</td>

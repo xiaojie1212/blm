@@ -19,8 +19,7 @@
                     <li><a href="{{route('admin.index')}}">平台用户管理</a></li>
                     <li><a href="{{route('shop.index')}}">商户信息管理</a></li>
                     <li><a href="{{route('admin.userIndex')}}">商户账号管理</a></li>
-                    <li><a href="{{route('about')}}">关于我们</a></li>
-                    <li><a href="{{route('help')}}">帮助</a></li>
+                    <li><a href="{{route('activity.index')}}">活动管理</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">别点,什么都没有<span class="caret"></span></a>
                         <ul class="dropdown-menu">

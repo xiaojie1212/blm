@@ -35,11 +35,6 @@ class ShopController extends Controller
 
                 $datas['shop_name']=$request->post('shop_name');
                 $datas['shop_category_id']=$request->post('shop_category_id');
-                $datas['img']="";
-                if ($request->file('img')){
-                    //上传图片
-                    $datas['img']= $request->file('img')->store("shops","images");
-                }
                 if(!$request->post('brand')){
                     $datas['brand']=0;
                 }else{
@@ -114,12 +109,6 @@ class ShopController extends Controller
             if ($user->update($data)) {
                 $date['shop_name'] = $request->post('shop_name');
                 $date['shop_category_id'] = $request->post('shop_category_id');
-                $date['img']="";
-                if ($request->file('img')){
-                    //上传图片
-                    File::delete(public_path("/uploads/".$shop->img));
-                    $date['img']= $request->file('img')->store("shops","images");
-                }
                 $date['brand'] = $request->post('brand');
                 $date['on_time'] = $request->post('on_time');
                 $date['fengniao'] = $request->post('fengniao');
@@ -154,6 +143,15 @@ class ShopController extends Controller
         $shop->status=1;
         $shop->save();
         return back()->with("success","通过审核");
+    }
+
+    public function upload(Request $request){
+        $fileName= $request->file('file')->store('shop','oss');
+        $date=[
+            'status'=>1,
+            'url'=>env("ALIYUN_OSS_URL").$fileName
+        ];
+        return $date;
     }
 
 }

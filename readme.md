@@ -60,3 +60,21 @@
 
 ### 遇见的问题
 没有
+
+
+# DAY4
+## 开发任务
+## 优化 
+- 将网站图片上传到阿里云OSS对象存储服务，以减轻服务器压力(https://github.com/jacobcyl/Aliyun-oss-storage) 
+- 使用webuploder图片上传插件，提升用户上传图片体验
+
+##平台 
+- 平台活动管理（活动列表可按条件筛选 未开始/进行中/已结束 的活动） 
+- 活动内容使用ueditor内容编辑器(https://github.com/overtrue/laravel-ueditor)
+
+##商户端 
+- 查看平台活动（活动列表和活动详情） 
+- 活动列表不显示已结束的活动
+
+### 遇见的问题
+暂无

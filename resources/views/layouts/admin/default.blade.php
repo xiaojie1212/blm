@@ -14,6 +14,10 @@
 
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css">
+
+    <link rel="stylesheet" type="text/css" href="http://fex.baidu.com/webuploader/css/syntax.css">
+    <link rel="stylesheet" type="text/css" href="http://fex.baidu.com/webuploader/css/style.css">
 
     <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
     <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
@@ -22,9 +26,10 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 @include("layouts.admin._header")
-
+@include('vendor.ueditor.assets')
 @include("layouts.admin._msg")
 @yield('content')
 @include("layouts.admin._errors")
@@ -37,6 +42,7 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 @include("layouts.admin._footer")
-@yield('js')
+<script type="text/javascript" src="/webuploader/webuploader.js"></script>
+@yield("js")
 </body>
 </html>

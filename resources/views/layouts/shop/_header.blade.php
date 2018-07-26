@@ -20,6 +20,7 @@
                     <li><a href="{{route('user.index')}}">店铺详情管理</a></li>
                     <li><a href="{{route('menucate.index')}}">菜品分类管理</a></li>
                     <li><a href="{{route('menu.index')}}">菜品管理</a></li>
+                    <li><a href="{{route('user.act')}}">正在进行的活动</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">别点 <span class="caret"></span></a>
                         <ul class="dropdown-menu">

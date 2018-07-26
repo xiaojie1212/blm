@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Shop;
 
+use App\Models\Activity;
 use App\Models\Shop;
 use App\Models\ShopCategory;
 use App\Models\User;
@@ -112,5 +113,14 @@ class UserController extends \App\Http\Controllers\Shop\BaseController
         //提示
         session()->flash("danger","注销成功");
         return redirect()->route("user.login");
+    }
+
+    public function act()
+    {
+        $date=date(now());
+
+        $acts=Activity::where('start_time','<=',$date)
+            ->Where('end_time','>=',$date)->paginate(2);
+        return view('shop.activity.index',compact('acts'));
     }
 }

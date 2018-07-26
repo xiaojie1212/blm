@@ -21,10 +21,10 @@ class MenuController extends Controller
         $maxPrice=\request()->input('maxPrice');
         $keywords=\request()->input('keywords');
         $menuId=\request()->input('menu_id');
-        $id=Auth::user()->id;
-        $query=Menu::orderBy('id')->where('shop_id',$id);
+        $shopId=Auth::user()->id;
+        $query=Menu::orderBy('id')->where('shop_id',$shopId);
         if ($minPrice!==null){
-            $query->where('goods_price','>=',$minPrice);
+            $query->where(' goods_price','>=',$minPrice);
         }
 
         if ($maxPrice!==null){
@@ -38,26 +38,23 @@ class MenuController extends Controller
             $query->where('category_id','=',$menuId);
         }
         $menus = $query->paginate(2);
-        $menucates=MenuCategories::all();
+        $menucates=MenuCategories::where('shop_id',$shopId)->get();
         $arr=$request->query();
         return view('shop.menu.index',compact('menus','menucates','arr'));
     }
 
     public function add(Request $request)
     {
-        $menucates=MenuCategories::all();
+        $shopId=Auth::user()->id;
+        $menucates=MenuCategories::where('shop_id',$shopId)->get();
         if ($request->isMethod('post')){
             $this->validate($request, [
                 'goods_name' => 'required|min:2',
                 'description' => 'required',
+                'menu_id' =>'required',
             ]);
             $data=$request->all();
-            $data['goods_img']="";
-            if ($request->file('goods_img')){
-                //上传图片
-                $data['goods_img']= $request->file('goods_img')->store("menu","images");
-            }
-            $data['shop_id']=Auth::user()->shop_id;
+            $data['shop_id']=Auth::user()->id;
             //入库
             Menu::create($data);
             //跳转
@@ -70,19 +67,15 @@ class MenuController extends Controller
     public function edit(Request $request,$id)
     {
         $menu=Menu::findOrFail($id);
-        $menucates=MenuCategories::all();
+        $shopId=Auth::user()->id;
+        $menucates=MenuCategories::where('shop_id',$shopId)->get();
         if ($request->isMethod('post')){
             $this->validate($request, [
                 'goods_name' => 'required|min:2',
                 'description' => 'required',
+                'menu_id' =>'required',
             ]);
             $data=$request->all();
-            $data['goods_img']="";
-            if ($request->file('goods_img')){
-                //上传图片
-                File::delete(public_path("/uploads/".$menu->goods_img));
-                $data['goods_img']= $request->file('goods_img')->store("menu","images");
-            }
             //入库
            $menu->update($data);
             //跳转
@@ -101,5 +94,13 @@ class MenuController extends Controller
         //跳转
         $request->session()->flash("success","删除成功");
         return redirect()->route("menu.index");
+    }
+    public function upload(Request $request){
+        $fileName= $request->file('file')->store('menus','oss');
+        $date=[
+            'status'=>1,
+            'url'=>env("ALIYUN_OSS_URL").$fileName
+        ];
+        return $date;
     }
 }

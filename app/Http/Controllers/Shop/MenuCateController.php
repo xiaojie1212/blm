@@ -25,11 +25,12 @@ class MenuCateController extends Controller
                 'name' => 'required|min:2',
                 'description' => 'required',
             ]);
+            $shopId=Auth::user()->id;
             if ($request->is_selected== 1){
-                MenuCategories::where('is_selected','1')->update(['is_selected'=>0]);
+                MenuCategories::where('is_selected','1')->where('shop_id',$shopId)->update(['is_selected'=>0]);
             }
             $data=$request->all();
-            $data['shop_id']=Auth::user()->shop_id;
+            $data['shop_id']=Auth::user()->id;
             //入库
             MenuCategories::create($data);
             //跳转
@@ -48,8 +49,9 @@ class MenuCateController extends Controller
                 'name' => 'required|min:2',
                 'description' => 'required',
             ]);
+            $shopId=Auth::user()->id;
             if ($request->is_selected== 1){
-                $menucate->where('is_selected','1')->update(['is_selected'=>0]);
+                $menucate->where('is_selected','1')->where('shop_id',$shopId)->update(['is_selected'=>0]);
             }
             $data=$request->all();
             //入库
