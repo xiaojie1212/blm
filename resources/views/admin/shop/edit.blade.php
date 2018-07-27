@@ -30,7 +30,6 @@
         <br/>
         <div class="form-group">
             店铺图片:
-            <img src="{{$shop->img}}" height="100" width="100">
             <input type="hidden" name="img" id="goods_img">
             <div id="uploader-demo">
                 <!--用来存放item-->

@@ -20,7 +20,7 @@
                 <td>{{$shop->shop_category->name}}</td>
                 <td>{{$shop->shop_name}}</td>
                 <td><img src="{{$shop->img}}" width="50"></td>
-                <td>{{$shop->rating}}</td>
+                <td>{{$shop->shop_rating}}</td>
                 <td>{{$shop->start_send}}</td>
                 <td>{{$shop->send_cost}}</td>
                 <td>{{\App\Models\Shop::$statusArray[$shop->status]}}</td>

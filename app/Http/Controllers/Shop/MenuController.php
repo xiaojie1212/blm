@@ -21,7 +21,7 @@ class MenuController extends Controller
         $maxPrice=\request()->input('maxPrice');
         $keywords=\request()->input('keywords');
         $menuId=\request()->input('menu_id');
-        $shopId=Auth::user()->id;
+        $shopId=Auth::user()->shop_id;
         $query=Menu::orderBy('id')->where('shop_id',$shopId);
         if ($minPrice!==null){
             $query->where(' goods_price','>=',$minPrice);
@@ -45,16 +45,16 @@ class MenuController extends Controller
 
     public function add(Request $request)
     {
-        $shopId=Auth::user()->id;
+        $shopId=Auth::user()->shop_id;
         $menucates=MenuCategories::where('shop_id',$shopId)->get();
         if ($request->isMethod('post')){
             $this->validate($request, [
                 'goods_name' => 'required|min:2',
                 'description' => 'required',
-                'menu_id' =>'required',
+
             ]);
             $data=$request->all();
-            $data['shop_id']=Auth::user()->id;
+            $data['shop_id']=Auth::user()->shop_id;
             //入库
             Menu::create($data);
             //跳转
@@ -67,7 +67,7 @@ class MenuController extends Controller
     public function edit(Request $request,$id)
     {
         $menu=Menu::findOrFail($id);
-        $shopId=Auth::user()->id;
+        $shopId=Auth::user()->shop_id;
         $menucates=MenuCategories::where('shop_id',$shopId)->get();
         if ($request->isMethod('post')){
             $this->validate($request, [

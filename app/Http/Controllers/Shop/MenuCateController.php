@@ -13,7 +13,7 @@ class MenuCateController extends Controller
 {
     public function index()
     {
-        $id=Auth::user()->id;
+        $id=Auth::user()->shop_id;
         $menucates=MenuCategories::where('shop_id',$id)->get();
         return view('shop.menucate.index',compact('menucates'));
     }
@@ -25,12 +25,12 @@ class MenuCateController extends Controller
                 'name' => 'required|min:2',
                 'description' => 'required',
             ]);
-            $shopId=Auth::user()->id;
+            $shopId=Auth::user()->shop_id;
             if ($request->is_selected== 1){
                 MenuCategories::where('is_selected','1')->where('shop_id',$shopId)->update(['is_selected'=>0]);
             }
             $data=$request->all();
-            $data['shop_id']=Auth::user()->id;
+            $data['shop_id']=Auth::user()->shop_id;
             //入库
             MenuCategories::create($data);
             //跳转
@@ -49,7 +49,7 @@ class MenuCateController extends Controller
                 'name' => 'required|min:2',
                 'description' => 'required',
             ]);
-            $shopId=Auth::user()->id;
+            $shopId=Auth::user()->shop_id;
             if ($request->is_selected== 1){
                 $menucate->where('is_selected','1')->where('shop_id',$shopId)->update(['is_selected'=>0]);
             }

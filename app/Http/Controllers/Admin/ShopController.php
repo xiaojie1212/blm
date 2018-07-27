@@ -31,7 +31,7 @@ class ShopController extends Controller
                 "start_send" => "required",
                 "send_cost" => "required",
             ]);
-            DB::transaction(function () use ($request){
+//            dd($request->post());
 
                 $datas['shop_name']=$request->post('shop_name');
                 $datas['shop_category_id']=$request->post('shop_category_id');
@@ -55,7 +55,6 @@ class ShopController extends Controller
                 }else{
                     $datas['bao']=$request->post('bao');
                 }
-
                 if(!$request->post('piao')){
                     $datas['piao']=0;
                 }else{
@@ -66,6 +65,7 @@ class ShopController extends Controller
                 }else{
                     $datas['zhun']=$request->post('zhun');
                 }
+                $datas['img']=$request->post('img');
                 $datas['start_send']=$request->post('start_send');
                 $datas['send_cost']=$request->post('send_cost');
 
@@ -76,10 +76,9 @@ class ShopController extends Controller
                     $data['shop_id']=$shop['id'];
                     User::create($data);
                 }
-            });
+
             $request->session()->flash("success","注册成功,等待管理员审核");
             return redirect()->route("shop.index");
-
 
         }
         return view("admin.shop.reg",compact("cates"));
@@ -117,6 +116,7 @@ class ShopController extends Controller
                 $date['zhun'] = $request->post('zhun');
                 $date['start_send'] = $request->post('start_send');
                 $date['send_cost'] = $request->post('send_cost');
+                $date['img']=$request->post('img');
                 if ($shop->update($date)) {
                     $request->session()->flash("success", "编辑成功,等待管理员审核");
                     return redirect()->route("shop.index");
