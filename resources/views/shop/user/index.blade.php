@@ -25,7 +25,7 @@
                 <td>{{$shop->id}}</td>
                 <td>{{$shop->shop_category->name}}</td>
                 <td>{{$shop->shop_name}}</td>
-                <td><img src="/uploads/{{$shop->img}}" width="50"></td>
+                <td><img src="{{$shop->img}}" width="50"></td>
                 <td>{{$shop->rating}}</td>
                 <td>{{$shop->brand===1?"是":"否"}}</td>
                 <td>{{$shop->on_time===1?"是":"否"}}</td>

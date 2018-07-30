@@ -62,10 +62,8 @@ class MemberController extends BaseController
         $tel=\request()->input('tel');
         //生成随机验证码
         $code=rand(1000,9999);
-
-        Redis::set("tel_".$tel,$code);
-        Redis::expire("tel_".$tel,300);
-
+        //保存验证码并设置过期时间为五分钟
+        cache([$tel => $code], 5);
         //调试
          return [
              "status"=>"true",

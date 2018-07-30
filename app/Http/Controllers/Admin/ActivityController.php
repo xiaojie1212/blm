@@ -54,8 +54,9 @@ class ActivityController extends Controller
             ]);
             $data = $request->post();
 
-            $act->save($data);
-            return redirect()->route("activity.index").with("success", "编辑成功");
+            $act->update($data);
+            session()->flash("success", "编辑成功");
+            return redirect()->route("activity.index");
 
         }
         return view("admin.activity.edit",compact('act'));

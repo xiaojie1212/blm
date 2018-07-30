@@ -15,7 +15,7 @@
 
                 @auth('admin')
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+
                     <li><a href="{{route('admin.index')}}">平台用户管理</a></li>
                     <li><a href="{{route('shop.index')}}">商户信息管理</a></li>
                     <li><a href="{{route('admin.userIndex')}}">商户账号管理</a></li>
@@ -45,12 +45,7 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" method="get" action="">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索" name="name">
-                    </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
-                </form>
+
                 @endauth
 
                 @guest('admin')

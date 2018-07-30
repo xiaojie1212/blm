@@ -15,8 +15,6 @@
 
             @auth
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
-
                     <li><a href="{{route('user.index')}}">店铺详情管理</a></li>
                     <li><a href="{{route('menucate.index')}}">菜品分类管理</a></li>
                     <li><a href="{{route('menu.index')}}">菜品管理</a></li>
