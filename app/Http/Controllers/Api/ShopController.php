@@ -8,7 +8,7 @@ use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ShopController extends Controller
+class ShopController extends BaseController
 {
     //提供店铺列表
     public function list(Request $request)
