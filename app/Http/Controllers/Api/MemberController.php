@@ -64,11 +64,7 @@ class MemberController extends BaseController
         $code=rand(1000,9999);
         //保存验证码并设置过期时间为五分钟
         cache([$tel => $code], 5);
-        //调试
-         return [
-             "status"=>"true",
-             "message"=>"获取短信验证码成功".$code
-         ];
+
         $config = [
             'access_key' => 'LTAIrGYffYL2khhY',
             'access_secret' => 'J9LzDSH0R0WzbICjKzmV257xZmcP26',
@@ -142,4 +138,31 @@ class MemberController extends BaseController
             'message'=>"重置密码成功"
         ];
     }
+
+    public function detail(Request $request)
+    {
+        $userId=$request->input('user_id');
+        return Member::find($userId);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $data = $request->all();
+        $member = Member::find($data['id']);
+        if ($member && Hash::check($data['oldPassword'], $member->password)) {
+            $data['password'] = Hash::make($data['newPassword']);
+            $member->update($data);
+            return [
+                'status'=>"true",
+                'message'=>"修改密码成功"
+            ];
+        }else{
+            return [
+                'status' => "false",
+                //获取错误信息
+                "message" => "旧密码错误"
+            ];
+        }
+    }
+
 }

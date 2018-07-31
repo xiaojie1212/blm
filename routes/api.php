@@ -29,6 +29,8 @@ Route::namespace('Api')->group(function () {
     Route::any("member/sms","MemberController@sms");
     Route::any("member/login","MemberController@login");
     Route::any("member/reset","MemberController@reset");
+    Route::any("member/detail","MemberController@detail");
+    Route::any("member/changePassword","MemberController@changePassword");
 
     //地址
     Route::any("addresses/add","AddressesController@add");
@@ -39,4 +41,10 @@ Route::namespace('Api')->group(function () {
     //购物车
     Route::any("cart/add","CartController@add");
     Route::any("cart/list","CartController@list");
+
+    //订单
+    Route::any("order/add","OrderController@add");
+    Route::any("order/order","OrderController@order");
+    Route::any("order/pay","OrderController@pay");
+    Route::any("order/list","OrderController@list");
 });
