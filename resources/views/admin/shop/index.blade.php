@@ -19,7 +19,7 @@
                 <td>{{$shop->id}}</td>
                 <td>{{$shop->shop_category->name}}</td>
                 <td>{{$shop->shop_name}}</td>
-                <td><img src="{{$shop->img}}" width="50"></td>
+                <td><img src="{{$shop->shop_img}}" width="50"></td>
                 <td>{{$shop->shop_rating}}</td>
                 <td>{{$shop->start_send}}</td>
                 <td>{{$shop->send_cost}}</td>

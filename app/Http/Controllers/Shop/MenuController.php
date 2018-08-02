@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 
 class MenuController extends Controller
 {
+    //首页
     public function index(Request $request)
     {
         //接收参数
@@ -43,6 +44,7 @@ class MenuController extends Controller
         return view('shop.menu.index',compact('menus','menucates','arr'));
     }
 
+    //添加
     public function add(Request $request)
     {
         $shopId=Auth::user()->id;
@@ -64,6 +66,7 @@ class MenuController extends Controller
         return view('shop.menu.add',compact('menucates'));
     }
 
+    //编辑
     public function edit(Request $request,$id)
     {
         $menu=Menu::findOrFail($id);
@@ -84,6 +87,8 @@ class MenuController extends Controller
         }
         return view('shop.menu.edit',compact('menucates','menu'));
     }
+
+    //删除
     public function del(Request $request,$id)
     {
         //通过id找到对象
@@ -95,6 +100,8 @@ class MenuController extends Controller
         $request->session()->flash("success","删除成功");
         return redirect()->route("menu.index");
     }
+
+    //图片上传
     public function upload(Request $request){
         $fileName= $request->file('file')->store('menus','oss');
         $date=[
@@ -103,4 +110,6 @@ class MenuController extends Controller
         ];
         return $date;
     }
+
+    //
 }

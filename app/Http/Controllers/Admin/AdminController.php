@@ -77,6 +77,7 @@ class AdminController extends BaseController
 
     }
 
+    //登录
     public function login(Request $request)
     {
         if ($request->isMethod('post')){

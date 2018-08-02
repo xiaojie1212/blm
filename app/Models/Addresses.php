@@ -9,7 +9,7 @@ class Addresses extends Model
     //
     public $fillable=[
         'user_id','name','tel',
-        'provence','city','area',
+        'province','city','area',
         'detail_address'
     ];
 }

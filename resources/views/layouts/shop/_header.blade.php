@@ -20,15 +20,18 @@
                     <li><a href="{{route('menu.index')}}">菜品管理</a></li>
                     <li><a href="{{route('user.act')}}">正在进行的活动</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">别点 <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">其他</a></li>
+                            <li><a href="{{route('order.index')}}">所有订单</a></li>
+                            <li><a href="{{route('order.day')}}">每日订单</a></li>
+                            <li><a href="{{route('order.month')}}">每月订单</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜品销量管理 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{route('order.menuDay')}}">每日销量</a></li>
+                            <li><a href="{{route('order.menuMonth')}}">每月销量</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -25,11 +25,13 @@ Route::get('/help', function () {
 
 //平台
 Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
+
     //店铺分类
     Route::any('shop_category/index',"ShopCategoryController@index")->name("shop_category.index");
     Route::any('shop_category/add',"ShopCategoryController@add")->name("shop_category.add");
     Route::any('shop_category/edit/{id}',"ShopCategoryController@edit")->name("shop_category.edit");
     Route::any('shop_category/del/{id}',"ShopCategoryController@del")->name("shop_category.del");
+
     //商家信息
     Route::any('shop/index',"ShopController@index")->name("shop.index");
     Route::any('shop/reg',"ShopController@reg")->name("shop.reg");
@@ -37,6 +39,7 @@ Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
     Route::any('shop/del/{id}',"ShopController@del")->name("shop.del");
     Route::any('shop/audit/{id}',"ShopController@audit")->name("shop.audit");
     Route::any('shop/upload',"ShopController@upload")->name("shop.upload");
+
     //平台账户
     Route::any('admin/index',"AdminController@index")->name("admin.index");
     Route::any('admin/add',"AdminController@add")->name("admin.add");
@@ -47,11 +50,19 @@ Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
     Route::any('admin/userIndex',"AdminController@userIndex")->name("admin.userIndex");
     Route::any('admin/audit/{id}',"AdminController@audit")->name("admin.audit");
     Route::any('admin/reset/{id}',"AdminController@reset")->name("admin.reset");
+
     //活动信息
     Route::any('activity/index',"ActivityController@index")->name("activity.index");
     Route::any('activity/add',"ActivityController@add")->name("activity.add");
     Route::any('activity/edit/{id}',"ActivityController@edit")->name("activity.edit");
     Route::any('activity/del/{id}',"ActivityController@del")->name("activity.del");
+
+    //订单
+    Route::any('order/index',"OrderController@index")->name("orders.index");
+    Route::any('order/day',"OrderController@day")->name("orders.day");
+    Route::any('order/month',"OrderController@month")->name("orders.month");
+    Route::any('order/menuDay',"OrderController@menuDay")->name("orders.menuDay");
+    Route::any('order/menuMonth',"OrderController@menuMonth")->name("orders.menuMonth");
 
 
 });
@@ -73,10 +84,21 @@ Route::domain('shop.blm.com')->namespace('Shop')->group(function () {
     Route::any('menucate/add',"MenuCateController@add")->name("menucate.add");
     Route::any('menucate/edit/{id}',"MenuCateController@edit")->name("menucate.edit");
     Route::any('menucate/del/{id}',"MenuCateController@del")->name("menucate.del");
+
     //菜品分类
     Route::any('menu/index',"MenuController@index")->name("menu.index");
     Route::any('menu/add',"MenuController@add")->name("menu.add");
     Route::any('menu/edit/{id}',"MenuController@edit")->name("menu.edit");
     Route::any('menu/del/{id}',"MenuController@del")->name("menu.del");
     Route::any('menu/upload',"MenuController@upload")->name("menu.upload");
+
+    //订单
+    Route::any('order/index',"OrderController@index")->name("order.index");
+    Route::any('order/detail/{id}',"OrderController@detail")->name("order.detail");
+    Route::any('order/audit/{id}',"OrderController@audit")->name("order.audit");
+    Route::any('order/cancel/{id}',"OrderController@cancel")->name("order.cancel");
+    Route::any('order/day',"OrderController@day")->name("order.day");
+    Route::any('order/month',"OrderController@month")->name("order.month");
+    Route::any('order/menuDay',"OrderController@menuDay")->name("order.menuDay");
+    Route::any('order/menuMonth',"OrderController@menuMonth")->name("order.menuMonth");
 });

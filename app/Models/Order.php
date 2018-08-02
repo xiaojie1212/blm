@@ -24,7 +24,11 @@ class Order extends Model
         return $arr[$this->status];
     }
 
-
+    public static $orderStatus = [
+    -1 => "已取消", 0 => "代付款",
+    1 => "待发货", 2 => "待确认",
+    3 => "完成"
+];
     public function goods()
     {
         return $this->hasMany(OrderGood::class, "order_id");

@@ -37,7 +37,7 @@ class OrderController extends BaseController
             //订单生成
             $data['sn']=date("YmdHis").rand(1000,9999);
             //地址信息
-            $data['province'] = $addresses->province;
+            $data['provence'] = $addresses->province;
             $data['city'] = $addresses->city;
             $data['area'] = $addresses->area;
             $data['detail_address'] = $addresses->detail_address;
