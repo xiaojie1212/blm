@@ -7,6 +7,7 @@
            <th>id</th>
            <th>账号</th>
            <th>电子邮箱</th>
+           <th>角色</th>
            <th>操作</th>
        </tr>
        @foreach($admins as $admin)
@@ -15,7 +16,13 @@
            <td>{{$admin->name}}</td>
            <td>{{$admin->email}}</td>
            <td>
+               @foreach($roles as $role)
+                   @if($admin->hasRole($role->name)) {{$role->name}} @endif
+               @endforeach
+           </td>
+           <td>
                <a href="{{route("admin.edit",$admin->id)}}" class="btn btn-warning">修改密码</a>
+               <a href="{{route("admin.editRole",$admin->id)}}" class="btn btn-info">修改角色</a>
                <a href="{{route("admin.del",$admin->id)}}" class="btn btn-danger">删除</a>
            </td>
        </tr>

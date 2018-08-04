@@ -44,6 +44,7 @@ Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
     Route::any('admin/index',"AdminController@index")->name("admin.index");
     Route::any('admin/add',"AdminController@add")->name("admin.add");
     Route::any('admin/edit/{id}',"AdminController@edit")->name("admin.edit");
+    Route::any('admin/editRole/{id}',"AdminController@editRole")->name("admin.editRole");
     Route::any('admin/del/{id}',"AdminController@del")->name("admin.del");
     Route::any('admin/login',"AdminController@login")->name("admin.login");
     Route::any('admin/logout',"AdminController@logout")->name("admin.logout");
@@ -64,7 +65,20 @@ Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
     Route::any('order/menuDay',"OrderController@menuDay")->name("orders.menuDay");
     Route::any('order/menuMonth',"OrderController@menuMonth")->name("orders.menuMonth");
 
+    //权限
+    Route::any('per/index',"PerController@index")->name("per.index");
+    Route::any('per/add',"PerController@add")->name("per.add");
+    Route::any('per/del/{id}',"PerController@del")->name("per.del");
 
+    //角色
+    Route::any('role/index',"RoleController@index")->name("role.index");
+    Route::any('role/add',"RoleController@add")->name("role.add");
+    Route::any('role/edit/{id}',"RoleController@edit")->name("role.edit");    Route::any('role/del/{id}',"RoleController@del")->name("role.del");
+
+    //导航
+    Route::any('nav/index',"NavController@index")->name("nav.index");
+    Route::any('nav/add',"NavController@add")->name("nav.add");
+    Route::any('nav/edit/{id}',"NavController@edit")->name("nav.edit");       Route::any('nav/del/{id}',"NavController@del")->name("nav.del");
 });
 
 //商家

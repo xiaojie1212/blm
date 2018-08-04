@@ -1,0 +1,1 @@
+饱了没注册提醒，您的商铺：<p style="color: #d43f3a;font-family: 楷体"><b>{{$shop->shop_name}}</b></p>已成功通过审核成为本平台下商铺，祝您生意兴隆！

@@ -177,6 +177,6 @@ class OrderController extends BaseController
 
         $menus=$orderDay->get();
 
-        return view('admin.order.menuDay',compact('menus','users','shopId','id'));
+        return view('admin.order.menuMonth',compact('menus','users','shopId','id'));
     }
 }

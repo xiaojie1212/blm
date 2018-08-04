@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\OrderShipped;
+use App\Mail\RegShipped;
 use App\Models\Shop;
 use App\Models\ShopCategory;
 use App\Models\User;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class ShopController extends Controller
 {
@@ -142,6 +145,8 @@ class ShopController extends Controller
         $shop=Shop::findOrFail($id);
         $shop->status=1;
         $shop->save();
+        $user = User::where("shop_id",$id)->first();
+        Mail::to($user)->send(new RegShipped($shop));
         return back()->with("success","通过审核");
     }
 

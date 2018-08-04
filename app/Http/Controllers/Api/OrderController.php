@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Mail\OrderShipped;
 use App\Models\Addresses;
 use App\Models\Cart;
 use App\Models\Member;
@@ -9,10 +10,13 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderGood;
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Mrgoon\AliSms\AliSms;
 
 class OrderController extends BaseController
 {
@@ -37,7 +41,7 @@ class OrderController extends BaseController
             //订单生成
             $data['sn']=date("YmdHis").rand(1000,9999);
             //地址信息
-            $data['provence'] = $addresses->province;
+            $data['province'] = $addresses->province;
             $data['city'] = $addresses->city;
             $data['area'] = $addresses->area;
             $data['detail_address'] = $addresses->detail_address;
@@ -73,7 +77,8 @@ class OrderController extends BaseController
                     //数据入库
                     OrderGood::create($goods);
                 }
-
+                $user = User::where("id", $shopId)->first();
+                Mail::to($user)->send(new OrderShipped($order));
                 //提交
                 DB::commit();
             }catch (QueryException $exception){
@@ -132,6 +137,14 @@ class OrderController extends BaseController
         //更改订单状态
         $order->status = 1;
         $order->save();
+
+        $config = [
+            'access_key' => 'LTAIrGYffYL2khhY',
+            'access_secret' => 'J9LzDSH0R0WzbICjKzmV257xZmcP26',
+            'sign_name' => '杜连杰',
+        ];
+
+        $aliSms = new AliSms();$aliSms->sendSms($member->tel, 'SMS_141635136', ['product'=> $member->username], $config);
         return [
             'status' => 'true',
             "message" => "支付成功"

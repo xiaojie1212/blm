@@ -15,31 +15,23 @@
 
                 @auth('admin')
                 <ul class="nav navbar-nav">
+                    @foreach(\App\Models\Nav::where('pid',0)->get() as $k1=>$v1)
+                    <li class="dropdown">
 
-                    <li><a href="{{route('admin.index')}}">平台用户管理</a></li>
-                    <li><a href="{{route('shop.index')}}">商户信息管理</a></li>
-                    <li><a href="{{route('admin.userIndex')}}">商户账号管理</a></li>
-                    <li><a href="{{route('activity.index')}}">活动管理</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单管理<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$v1->name}}<span class="caret"></span></a>
+
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('orders.index')}}">所有订单</a></li>
+                            @foreach(\App\Models\Nav::where('pid',$v1->id)->get() as $k2=>$v2)
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{route('orders.day')}}">每日订单</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{route('orders.month')}}">每月订单</a></li>
+                            <li><a href="{{route($v2->url)}}">{{$v2->name}}</a></li>
+                            @endforeach
                         </ul>
+
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜品订单管理<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{route('orders.menuDay')}}">菜品每日订单</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{route('orders.menuMonth')}}">菜品每月订单</a></li>
-                        </ul>
-                    </li>
+                    @endforeach
                 </ul>
+
+
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}} <span class="caret"></span></a>

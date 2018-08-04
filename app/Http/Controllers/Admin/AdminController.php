@@ -8,13 +8,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends BaseController
 {
     public function index()
     {
+        $roles=Role::all();
         $admins=Admin::all();
-        return view('admin.admin.index',compact('admins'));
+        return view('admin.admin.index',compact('admins','roles'));
     }
 
     public function add(Request $request)
@@ -28,12 +30,16 @@ class AdminController extends BaseController
             ]);
             $data=$request->all();
             $data['password']=bcrypt($data['password']);
-            Admin::create($data);
+            $admin=Admin::create($data);
+
+            //添加角色
+            $admin->syncRoles($request->post('role'));
+
             $request->session()->flash("success","添加成功");
             return redirect()->route("admin.index");
         }
-
-        return view('admin.admin.add');
+        $roles=Role::all();
+        return view('admin.admin.add',compact('roles'));
     }
 
     public function edit(Request $request,$id)
@@ -49,6 +55,7 @@ class AdminController extends BaseController
                 $request->user()->fill([
                     'password' => Hash::make($request->newPassword)
                 ])->save();
+
                 $request->session()->flash("success","修改成功");
                 return redirect()->route("admin.index");
             }else{
@@ -57,14 +64,30 @@ class AdminController extends BaseController
             }
 
         }
+
         return view("admin.admin.edit",compact('admin'));
+    }
+
+    //编辑角色
+    public function editRole(Request $request,$id)
+    {
+        $admin=Admin::findOrFail($id);
+        if ($request->isMethod('post')){
+            //修改角色
+            $admin->syncRoles($request->post('role'));
+            //跳转
+            return redirect()->route('admin.index')->with("success","修改成功");
+        }
+
+        $roles=Role::all();
+        return view("admin.admin.editRole",compact('admin','roles'));
     }
 
     public function del(Request $request,$id)
     {
 
-        if($id==="2" || $id==="1"){
-            $request->session()->flash("danger","不能删除超级管理员");
+        if($id==="10" || $id==="11"){
+            $request->session()->flash("danger","不能删除管理员");
             return redirect()->route("admin.index");
         }
         //通过id找到对象
