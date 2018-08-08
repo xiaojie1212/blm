@@ -79,7 +79,29 @@ Route::domain('admin.blm.com')->namespace('Admin')->group(function () {
     Route::any('nav/index',"NavController@index")->name("nav.index");
     Route::any('nav/add',"NavController@add")->name("nav.add");
     Route::any('nav/edit/{id}',"NavController@edit")->name("nav.edit");       Route::any('nav/del/{id}',"NavController@del")->name("nav.del");
+
+    //抽奖活动
+    Route::any('event/index',"EventController@index")->name("event.index");
+    Route::any('event/add',"EventController@add")->name("event.add");
+    Route::any('event/edit/{id}',"EventController@edit")->name("event.edit");
+    Route::any('event/del/{id}',"EventController@del")->name("event.del");
+    Route::any('event/bonus/{id}',"EventController@bonus")->name("event.bonus");
+    Route::any('event/list/{id}',"EventController@list")->name("event.list");
+    Route::any('event/prizeList/{id}',"EventController@prizeList")->name("event.prizeList");
+
+    //奖品
+    Route::any('eventPrize/index',"EventPrizeController@index")->name("eventPrize.index");
+    Route::any('eventPrize/add',"EventPrizeController@add")->name("eventPrize.add");
+    Route::any('eventPrize/edit/{id}',"EventPrizeController@edit")->name("eventPrize.edit");
+    Route::any('eventPrize/del/{id}',"EventPrizeController@del")->name("eventPrize.del");
+    Route::any('eventPrize/winner/{id}',"EventPrizeController@winner")->name("eventPrize.winner");
 });
+
+
+
+
+
+
 
 //商家
 Route::domain('shop.blm.com')->namespace('Shop')->group(function () {
@@ -115,4 +137,9 @@ Route::domain('shop.blm.com')->namespace('Shop')->group(function () {
     Route::any('order/month',"OrderController@month")->name("order.month");
     Route::any('order/menuDay',"OrderController@menuDay")->name("order.menuDay");
     Route::any('order/menuMonth',"OrderController@menuMonth")->name("order.menuMonth");
+
+    //报名
+    Route::any('events/index',"EventController@index")->name("events.index");
+    Route::any('events/signUp/{id}',"EventController@signUp")->name("events.signUp");
+    Route::any('events/winner',"EventController@winner")->name("events.winner");
 });
