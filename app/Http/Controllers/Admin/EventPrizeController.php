@@ -12,7 +12,7 @@ class EventPrizeController extends BaseController
 {
     public function index(){
         $prizes=EventPrize::paginate(3);
-//        返回抽奖内容
+        //返回抽奖内容
         $events=Event::all();
         return view('admin.eventPrize.index',compact('prizes'));
     }
@@ -62,7 +62,6 @@ if($query->count>=$num){
                'description' => 'required',
            ]);
 
-           //dd($data['event_id']);
 //            开奖前可以给该活动添加、修改、删除奖品]
            if( Event::where('id',$request->post('events_id'))->first()->is_prize==1){
 
@@ -70,7 +69,7 @@ if($query->count>=$num){
 
            } ;
            $data=$request->all();
-//            还没有开始抽奖 默认o
+//            还没有开始抽奖 默认
            $data['user_id']=0;
            $prize->update($data);
            return redirect()->route('eventPrize.index')->with('warning',"编辑成功");

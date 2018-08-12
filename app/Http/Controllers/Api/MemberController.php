@@ -38,6 +38,7 @@ class MemberController extends BaseController
         }
         //验证验证码是否一致
         $code = Redis::get("tel_" . $data['tel']);
+
         if ($code != $data['sms']) {
             //返回错误
             return [
@@ -63,7 +64,8 @@ class MemberController extends BaseController
         //生成随机验证码
         $code=rand(1000,9999);
         //保存验证码并设置过期时间为五分钟
-        cache([$tel => $code], 5);
+        //cache([$tel => $code], 5);
+        Redis::setex("tel_".$tel,300,$code);
 
         $config = [
             'access_key' => 'LTAIrGYffYL2khhY',

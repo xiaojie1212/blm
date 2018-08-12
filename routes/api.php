@@ -47,4 +47,7 @@ Route::namespace('Api')->group(function () {
     Route::any("order/order","OrderController@order");
     Route::any("order/pay","OrderController@pay");
     Route::any("order/list","OrderController@list");
+    Route::any("order/wxPay","OrderController@wxPay");
+    Route::any("order/status","OrderController@status");
+    Route::any("order/ok","OrderController@ok");
 });
